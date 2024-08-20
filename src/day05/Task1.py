@@ -30,7 +30,7 @@ def nameDelete():
     delete=input("삭제할 이름을 입력하세요: ")
 
     if names.count(delete)==1:
-        names=names.replace(delete,"")
+        names=names.replace(delete,"").strip()
     return
 
 while True: # 무한루프
