@@ -22,10 +22,11 @@ def read():
         if line:
             # Region.percent1(line.split(',')[1], line.split(',')[2])
             region=Region(line.split(',')[0],line.split(',')[1],line.split(',')[2],line.split(',')[3],line.split(',')[4])
-            region.percent1( )
+            region.percent1()
+            region.percent2()
             regions.append(region)
     for people in regions:
-        print(f'{people.name:5}  {people.total:>5}  {people.male:>5}  {people.female:>5}  {people.group:>5} { people.percent1() }')
+        print(f'{people.name:5}  {people.total:>5}  {people.male:>5}  {people.female:>5}  {people.group:>5}  { people.percent1() }%  {people.percent2()}%')
 
 
 

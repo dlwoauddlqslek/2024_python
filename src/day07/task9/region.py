@@ -7,7 +7,9 @@ class Region:
         self.group=group
 
     def percent1(self):
-        result=(int( self.male ) / int( self.total))*100
+        result=round(int(self.male ) / int(self.total)*100)
         return result
-
+    def percent2(self):
+        result=round(int(self.female)/ int(self.total)*100)
+        return result
 
