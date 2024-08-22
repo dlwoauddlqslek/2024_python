@@ -1,23 +1,20 @@
 
-# 객체/리스트 활용 , p.190 ~ p.207
-# [조건1] : 각 함수들을 구현해서 프로그램 완성
-# [조건2] : 1. 한명의 이름과 나이를 입력받아 저장합니다.
-#          2. 저장된 여러명의 이름, 나이를 모두 출력
-#          3. 수정할 이름을 입력받아 존재하면 새로운 이름,나이를 입력받고 수정합니다.
-#          4. 삭제할 이름을 입력받아 존재하면 삭제
-# [조건3] : names 변수 외 추가적인 전역 변수 생성 불가능.
-# [조건4] : 프로그램이 종료되고 다시 실행되더라도 기존의 names 데이터가 유지되도록 파일처리
+'''
+    User.py: user 객체의 클래스 정의
+    file.py: save(), load() 함수를 정의
+    [조건1] 이름과 나이를 입력받아
+    [조건2] 프로그램이 종료되고 다시 실행해도 names의 데이터가 유지되도록 파일처리
+'''
+from User import User
+from file import *
 names=[]
-class Info:
-    def __init__(self,name,age):
-        self.name=name
-        self.age=age
 def nameCreate():
     global names # 함수안에서 전역변수를 호출하는 방법, global 전역변수명
     name=input('이름: ')
     age=input('나이: ')
-    new=Info(name,age); print(new.age+new.name)
+    new=User(name,age); print(new.age+new.name)
     names.append(new)
+    dataSave(names)
     return
 def nameRead():
     for info in names:
@@ -45,6 +42,7 @@ def nameDelete():
     # 해당 파일을 직접 실행할대는 실행되는 구역
     # 해당 파일을 다른 파일에서 호출 할때 실행되지 않는 구역[모듈]
 if __name__=="__main__":
+    names=dataLoad()
     while True: # 무한루프
         ch=input("1.create 2.read 3.update 4.delete: ")
         if ch=='1':
