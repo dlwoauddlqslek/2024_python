@@ -36,8 +36,11 @@ def qooqoo(result):
 def main():
     result=[]
     qooqoo(result)
-    print(result)
-    qooqoo_tbl=pd.DataFrame(result,columns=('번호','매장명','연락처','주소','영업시간'))
+    modify_result=[[field.replace(',','') for field in row]
+                   for row in result
+                   ]
+    print(modify_result)
+    qooqoo_tbl=pd.DataFrame(modify_result,columns=('번호','매장명','연락처','주소','영업시간'))
     qooqoo_tbl.to_csv('qooqoo4.csv',encoding='cp949',mode='w',index=False)
 
 if __name__=='__main__':
