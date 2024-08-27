@@ -11,6 +11,7 @@ def load() :
             if len(cols)==21:
                 dic = {'시군구':cols[1],'단지명':cols[5],'전용면적':cols[6],'계약년월':cols[7],'계약일':cols[8],'거래금액':int(eval(cols[9]+cols[10])),'층':cols[12]}
                 list.append(dic)
+    print(list)
     return list
 
 
