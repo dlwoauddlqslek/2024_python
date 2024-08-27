@@ -1,6 +1,5 @@
 from app import app # Flask 객체 호출
 
-
 @app.route("/qooqoo", methods=["GET"])
 def load() :
     list = []
