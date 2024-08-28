@@ -1,4 +1,4 @@
-#day08 > task10 > controller.py
+#day08 > task10 > service.py
 from app import app # Flask 객체 호출
 from service import personData # 서비스 함수 가져오기
 

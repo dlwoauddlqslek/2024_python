@@ -1,4 +1,4 @@
-# day08 > app > controller.py
+# day08 > app > service.py
 # [모듈] flask 객체 가져오기
 from app import app
 
