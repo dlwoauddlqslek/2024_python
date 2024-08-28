@@ -6,7 +6,7 @@ from service import *
 @app.route('/jobkorea', methods=['get'])
 def jobkorea():
     #(1) 만약 크롤링 된 csv 파일이 없거나 최신화 하고 싶을 대
-    list2d_to_csv()
+    #list2d_to_csv()
 
     #(2) csv 저장된 데이터를 JSON 으로 가져오기
     result2 = read_csv_to_json('jobkorea')

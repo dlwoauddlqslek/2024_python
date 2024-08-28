@@ -1,5 +1,5 @@
 import math
-
+from collections import Counter
 from bs4 import BeautifulSoup
 import urllib.request
 import pandas as pd
@@ -82,50 +82,19 @@ def load():
 
     car=[]
     for career in result:
-        data = career.get('경력')
+        data = career.get('경력').replace('·','_').replace('↑','')
+        data
+        print(data)
         car.append(data)
-    car.sort()
-    print(car)
-    list = []
-    count = 0
-    c=0
-    for i in car :
-        count += 1
-        print(count)
-        print(c)
-        if c==(len(car)-1):
-            list.append(count)
-            print(list)
-            break
-        if car[c+1] != car[c] :
-            list.append(count)
-            count = 0
-        c+=1
-    dic = {}
-    dic["총공고"]=total
-    dic["경력"]=list[0]
-    dic["경력10년"]=list[1]
-    dic["경력1년"]=list[2]
-    dic["경력2년"]=list[3]
-    dic["경력3년"]=list[4]
-    dic["경력4년"]=list[5]
-    dic["경력5년"]=list[6]
-    dic["경력6년"]=list[7]
-    dic["경력7년"]=list[8]
-    dic["경력8년"]=list[9]
-    dic["경력9년"]=list[10]
-    dic["경력무관"]=list[11]
-    dic["신입"]=list[12]
-    dic["신입_경력"]=list[13]
-    dic["신입_경력1년"]=list[14]
-    print(dic)
+    counter=dict(Counter(car))
+    counter["총공고"]= total
+    print(counter)
     list2=[]
-    list2.append(dic)
+    list2.append(counter)
     return list2
 
-
 if __name__=='__main__':
-    list2d_to_csv()
-    result2 = read_csv_to_json('jobkorea') # csv파일을 json으로 가져오는 서비스 호출
-    print(result2)
+    #list2d_to_csv()
+    #result2 = read_csv_to_json('jobkorea') # csv파일을 json으로 가져오는 서비스 호출
+    #print(result2)
     load()
