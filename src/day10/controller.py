@@ -1,7 +1,10 @@
 # [1] 플라스크 객체 가져오기
+from flask import jsonify
+
 from app import app
 # [2] (우리가 만든) 서비스 모듈 가져오기
 from service import *
+
 # app.run 코드 위에 HTTP 매핑 주소 정의
 @app.route('/qooqoo', methods=['get'])
 def qooqoo():
@@ -11,4 +14,4 @@ def qooqoo():
     #(2) csv 저장된 데이터를 JSON 으로 가져오기
     result2 = read_csv_to_json('qooqoo7')
     #(3) 서비스로부터 받은 데이터로 http 응답하기
-    return result2
+    return   result2
