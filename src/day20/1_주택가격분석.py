@@ -44,7 +44,7 @@ lr=LinearRegression()
 
 # 4. 모델 훈련
 lr.fit(x_train,y_train) # 훈련용 데이터를 이용한 모델 훈련
-lr.fit(x_train,y_train)
+
 
 # 5. 테스트용으로 예측하기 # 테스트용에 있는 주택 정보를 이용한 주택 가격 예측하기
 y_predict=lr.predict(x_test)
