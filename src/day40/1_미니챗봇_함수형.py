@@ -19,6 +19,7 @@ def stock_info( *kwargs ) : # 여러개의 매개변수를 받기
         return '제품을 확인 하기 위해서 제품을 정확히 알려 주세요.'
     return f'{ "콜라" }의 재고는 { result } 입니다.'
 
+
 # 예측한 확률의 질문과 함수 매칭 딕셔너리
 response_functions = {
     2 : time_info ,  # () 제외=함수정의 # 지금 몇 시에요? 라는 예측 질문을 찾았을때 함수 실행
@@ -29,7 +30,7 @@ response_functions = {
 data = [
     {"user": "안녕하세요", "bot": "안녕하세요! 무엇을 도와드릴까요?"},
     {"user": "오늘 날씨 어때요?", "bot": "오늘은 맑고 화창한 날씨입니다."},
-    {"user": "지금 몇 시에요?", "bot": "현재 시간을 알려 드릴게요."},
+    {"user": "지금 몇 시에요?", "bot": 4},
     {"user": "좋은 책 추천해 주세요", "bot": "최근에 인기가 많은 책은 '파이썬 데이터 분석'입니다."},
     {"user": "고마워요", "bot": "천만에요! 더 필요한 것이 있으면 말씀해주세요."} ,
     {"user": "콜라의 재고를 알려 주세요" , "bot" : "제품의 재고를 알려 드릴게요."}
@@ -103,14 +104,17 @@ def response( text ) :
     text = tokenizer.texts_to_sequences( [ text ] )  # 2. 예측할 값도 토큰 과 패딩  # 학습된 모델과 데이터 동일
     text = pad_sequences( text , maxlen= max_sequence_length )
     result = model.predict( text ) # 3. 예측
+    # 문자열로 string.value
+
     max_index = np.argmax( result )  # 4. 결과 # 가장 높은 확률의 인덱스 찾기
 
-    msg = outputs[max_index] # 일반적인 메시지
+    msg =outputs[max_index]
 
     # 만약에 예측한 질문의 인덱스가 함수매칭 딕셔너리내 존재하면
-    if max_index in response_functions :
+    if msg in response_functions :
         msg += response_functions[max_index]( text ) # 함수호출
     return msg
+
 
 # 확인
 print( response('안녕하세요') ) # 질문이 '안녕하세요' , 학습된 질문 목록중에 가장 높은 예측비율이 높은 질문의 응답을 출력한다.
